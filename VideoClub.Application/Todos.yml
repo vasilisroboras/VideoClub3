@@ -1,0 +1,25 @@
+/* 
+TODOS:
+Application reference mono sto domain
+domain den exei pouthena
+na tsekarw ta scoped transient singleton 
+tha prepei na kanw me transaction scope to rent to movie stin vasi .diladi to update to stock kai to update to rental
+entity framework transaction scope
+
+se ola ta actions pou einai async na valw cancellationToken
+h' na aferesw to async
+automapper constuctor forconstuctor param
+
+tha prepei na ftiaksw dtos sto application kai na mapparw me auto to dto kai oxi me to domain entity.
+
+na koitaksw gia elaxgous 
+
+
+sto telos tha prepei na kanw ta migrations na ginontai sto persistance kai oxi sto presentation
+
+
+1.Na koitaksw ta validations
+2. To transactions na paei sto persistance
+3.Na vrw alla senaria kai na prosthesw
+4.Mediatr kai CQRS
+*/

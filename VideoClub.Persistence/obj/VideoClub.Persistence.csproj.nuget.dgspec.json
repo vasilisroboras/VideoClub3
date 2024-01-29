@@ -1,0 +1,198 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Persistence\\VideoClub.Persistence.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Application\\VideoClub.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Application\\VideoClub.Application.csproj",
+        "projectName": "VideoClub.Application",
+        "projectPath": "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Application\\VideoClub.Application.csproj",
+        "packagesPath": "C:\\Users\\vasilisroboras\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\vasilisroboras\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Domain\\VideoClub.Domain.csproj": {
+                "projectPath": "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Domain\\VideoClub.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Domain\\VideoClub.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Domain\\VideoClub.Domain.csproj",
+        "projectName": "VideoClub.Domain",
+        "projectPath": "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Domain\\VideoClub.Domain.csproj",
+        "packagesPath": "C:\\Users\\vasilisroboras\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\vasilisroboras\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Persistence\\VideoClub.Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Persistence\\VideoClub.Persistence.csproj",
+        "projectName": "VideoClub.Persistence",
+        "projectPath": "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Persistence\\VideoClub.Persistence.csproj",
+        "packagesPath": "C:\\Users\\vasilisroboras\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Persistence\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\vasilisroboras\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Application\\VideoClub.Application.csproj": {
+                "projectPath": "C:\\Users\\vasilisroboras\\source\\repos\\VideoClub2.0\\VideoClub2.0\\VideoClub.Application\\VideoClub.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

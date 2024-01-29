@@ -1,0 +1,8 @@
+using System.Collections.Generic;
+using VideoClub.Domain.Entities;
+
+public class GenreDTO
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
