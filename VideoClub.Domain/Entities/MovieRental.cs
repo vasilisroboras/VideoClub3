@@ -11,17 +11,37 @@ namespace VideoClub.Domain.Entities
 		public int MovieId { get; }
 		public DateTime RentalDate { get; }
 
+		public DateTime ReturnedDate { get;private set; }
+
+		public DateTime ShouldBeReturnedUntil { get; }
+
 		public MovieRental() { }
 
-		internal MovieRental(int id, int customerId, int movieId, DateTime rentalDate)
+		public int Price { get; private set; }
+
+		internal MovieRental(int id, int customerId, int movieId,int moviePrice, DateTime rentalDate)
 		{
 			Id = id;
 			CustomerId = customerId;
 			MovieId = movieId;
 			RentalDate = rentalDate;
+			Price = moviePrice;
+			ShouldBeReturnedUntil = rentalDate.AddDays(7);
 		}
 
-		internal MovieRental(int customerId, int movieId, DateTime rentalDate)
-			: this(0, customerId, movieId, rentalDate) { }
+		internal void CalculatePriceAndReturnDate(DateTime returnDate)
+        {
+            if (returnDate > ShouldBeReturnedUntil)
+            {
+                 TimeSpan lateDuration = DateTime.Now - ShouldBeReturnedUntil;
+                int lateDays = (int)Math.Ceiling(lateDuration.TotalDays);
+				// 1 euro extra per late day
+				Price += lateDays; 
+            }
+			ReturnedDate = returnDate;
+        }
+
+		internal MovieRental(int customerId, int movieId, DateTime rentalDate, int price)
+			: this(0, customerId, movieId,price, rentalDate) { }
 	}
 }

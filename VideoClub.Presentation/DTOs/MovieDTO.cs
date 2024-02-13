@@ -12,5 +12,6 @@ public class MovieDTO
 	public int Stock { get; set; }
 	public bool IsAvailable { get; set; }
 	public List<int> GenreIds { get; set; }
+	public int Price { get; set; }
 	public ICollection<MovieRental> Rentals { get; set; }
 }

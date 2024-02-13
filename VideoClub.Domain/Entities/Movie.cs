@@ -17,6 +17,25 @@ namespace VideoClub.Domain.Entities
 		public DateTime ReleaseDate { get; }
 		public int Stock { get; private set; }
 
+		public int Price
+        {
+            get
+            {
+                if (ReleaseDate.Year < 1990)
+                {
+                    return 1;
+                }
+                else if (ReleaseDate.Year >= 1990 && ReleaseDate.Year < 2000)
+                {
+                    return 3;
+                }
+                else
+                {
+                    return 5;
+                }
+            }private set { }
+        }
+
 		public bool IsAvailable => Stock == 0;
 
 		public Movie()
@@ -31,6 +50,7 @@ namespace VideoClub.Domain.Entities
 			Description = description;
 			ReleaseDate = releaseDate;
 			Stock = stock;
+			Price = 0;
 
 			_genres = movieGenres?.ToList() ?? new List<Genre>(0);
 		}

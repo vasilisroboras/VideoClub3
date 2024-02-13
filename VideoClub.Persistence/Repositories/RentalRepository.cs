@@ -14,8 +14,6 @@ namespace VideoClub.Persistence.Repositories
 		}
 		public async Task<MovieRental> AddRental(MovieRental rental)
 		{
-
-			_dbContext.Rentals.Add(rental);
 			await _dbContext.SaveChangesAsync();
 
 			return rental;

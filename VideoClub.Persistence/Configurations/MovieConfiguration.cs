@@ -21,6 +21,8 @@ namespace VideoClub.Persistence.Configurations
 			// Assuming you want to map the ReleaseDate property
 			builder.Property(x => x.ReleaseDate);
 
+			builder.Property(x => x.Price);
+
             // Assuming you want to map the Stock property
             builder.Property(x => x.Stock)
                 .IsRequired();

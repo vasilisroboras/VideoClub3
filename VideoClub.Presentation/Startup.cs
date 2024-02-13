@@ -19,6 +19,7 @@ using AutoMapper;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 using VideoClub.Application.Dependencies;
 using VideoClub.Domain.Services;
+using VideoClub.Application.Services.Interfaces;
 
 namespace VideoClub.Presentation
 {
@@ -52,6 +53,7 @@ namespace VideoClub.Presentation
 			});
 
 			services.AddTransient<IMovieRentalService, MovieRentalService>();
+			services.AddTransient<ITransactionService, TransactionService>();
 
 			services.AddScoped<IMovieRepository, MovieRepository>();
 			services.AddScoped<IRentalRepository, RentalRepository>();
