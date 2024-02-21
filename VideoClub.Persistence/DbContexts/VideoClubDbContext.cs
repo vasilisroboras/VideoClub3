@@ -63,6 +63,11 @@ namespace VideoClub.Persistence
 			//	.WithMany(c => c.Rentals)
 			//	.HasForeignKey(r => r.CustomerId);
 
+			// modelBuilder.Entity<MovieRental>()
+			// .HasOne<Customer>()
+			// .WithMany(x => x.Rentals)
+			// .HasForeignKey("CustomerId");
+
 			base.OnModelCreating(modelBuilder);
 		}
 	}

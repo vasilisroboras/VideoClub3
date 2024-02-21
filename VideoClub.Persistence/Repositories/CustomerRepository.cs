@@ -16,7 +16,7 @@ namespace VideoClub.Persistence.Repositories
 			_dbContext = dbContext;
 		}
 
-		public async Task<Customer> AddCustomer(Customer customer1)
+		public async Task<Customer> AddCustomer(Customer customer1,CancellationToken cancellationToken = default)
 		{
 			var x = Customer.CreateCustomer(customer1.Id, customer1.Name);
 			await _dbContext.Customers.AddAsync(x);
@@ -31,7 +31,7 @@ namespace VideoClub.Persistence.Repositories
 
 		public async Task<Customer> GetCustomerByNameAsync(string name, CancellationToken token)
 		{
-			return await _dbContext.Customers.FirstOrDefaultAsync(m => m.Name == name, token);
+			return await _dbContext.Customers.Include(c => c.Rentals).FirstOrDefaultAsync(m => m.Name == name, token);
 		}
 	}
 }

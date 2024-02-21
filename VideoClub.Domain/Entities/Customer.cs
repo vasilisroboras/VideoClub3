@@ -43,7 +43,7 @@ namespace VideoClub.Domain.Entities
 				throw new Exception("Invalid Movie Id");
 			}
 			if (_rentals.Exists(x => x.MovieId == movieId))
-				throw new InvalidRentalException($"Movie with id {movieId} is already rented by customer with id {Id}");
+				throw new InvalidRentalException($"You are already renting this movie,id {movieId}");
 
 			_rentals.Add(new MovieRental(Id, movieId, rentalDate,price));
 

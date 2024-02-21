@@ -43,7 +43,7 @@ namespace VideoClub.Controllers
 		{
 			try
 			{
-				var customer = await _customerService.GetCustomerByNameAsync(name, token);
+				 var customer = await _customerService.GetCustomerByNameAsync(name, token);
 				return Ok(customer);
 			}
 			catch (Exception ex)
@@ -54,7 +54,7 @@ namespace VideoClub.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> AddCustomer([FromBody] CustomerDTO customerDto)
+		public async Task<IActionResult> AddCustomer([FromBody] CustomerDTO customerDto, CancellationToken token)
 		{
 			var customer = _customerMapper.Map<Customer>(customerDto);
 			if (customer == null)
@@ -62,7 +62,7 @@ namespace VideoClub.Controllers
 				return BadRequest("Invalid Customer data.");
 			}
 
-			var addedCustomer = await _customerService.AddCustomer(customer);
+			var addedCustomer = await _customerService.AddCustomer(customer,token);
 
 			if (addedCustomer != null)
 			{

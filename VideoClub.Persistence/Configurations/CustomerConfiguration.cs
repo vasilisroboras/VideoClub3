@@ -14,6 +14,8 @@ namespace VideoClub.Persistence.Configurations
             builder.Property(x => x.Name)
                 .IsRequired() // You can modify this based on your requirements
                 .HasMaxLength(255); // Adjust the maximum length based on your needs
+
+           
         }
     }
 }

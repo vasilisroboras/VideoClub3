@@ -25,9 +25,9 @@ namespace VideoClub.Application.Services
             return await _customerRepository.GetCustomerByNameAsync(name, token);
         }
 
-        public async Task<Customer> AddCustomer(Customer customer)
+        public async Task<Customer> AddCustomer(Customer customer, CancellationToken cancellationToken)
         {
-            return await _customerRepository.AddCustomer(customer);
+            return await _customerRepository.AddCustomer(customer,cancellationToken);
         }
     }
 }
