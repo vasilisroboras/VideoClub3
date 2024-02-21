@@ -18,11 +18,11 @@ namespace VideoClub.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> ReturnMovie(string movieTitle, string customerName, DateTime rentalDate, CancellationToken token)
+		public async Task<IActionResult> ReturnMovie(string movieTitle, string customerName, DateTime returnRentalDate, CancellationToken token)
 		{
 			try
 			{
-				var movieRented = await _movieService.RentMovie( movieTitle, customerName, rentalDate, token);
+				var movieRented = await _movieService.ReturnMovie( movieTitle, customerName, returnRentalDate, token);
 				return Ok(movieRented);
 			}
 			catch (Exception ex)

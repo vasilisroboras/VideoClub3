@@ -68,7 +68,37 @@ namespace VideoClub.Application.Services
                     await _rentalRepository.AddRental(movieReltanResult.Rental);
                 });
 
-                return "Movie rented successfully";
+                return $"Movie rented successfully. You should return it until {movieReltanResult.Rental.ShouldBeReturnedUntil}";
+            }
+			 catch (Exception ex)
+            {
+                // Log or handle the exception
+                return $"Failed to rent the movie: {ex.Message}";
+            }
+
+		}
+
+		public async  Task<string> ReturnMovie(string movieTitle, string customerName, DateTime returnRentalDate, CancellationToken token)
+		{
+			var customer = await _customerRepository.GetCustomerByNameAsync(customerName, token);
+			if (customer == null)
+				return "Customer not found";
+
+			var movie = await _movieRepository.GetMovieByTitleAsync(movieTitle);
+			if (movie == null)
+				return "Movie not found";
+
+			var movieReltanResult = _movieRentalService.ReturnMovie(customer, movie, returnRentalDate);
+			// TODO: make this transactional!
+			 try
+            {
+                await _iTransactionService.ExecuteInTransactionAsync(async () =>
+                {
+                    await _movieRepository.UpdateMovie(movieReltanResult.Movie);
+                    await _rentalRepository.AddRental(movieReltanResult.Rental);
+                });
+
+                return $"You return the movie and paid {movieReltanResult.Movie.Price}";
             }
 			 catch (Exception ex)
             {

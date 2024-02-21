@@ -50,7 +50,7 @@ namespace VideoClub.Domain.Entities
 			return new MovieRental(Id, movieId, rentalDate,price);
 		}
 
-		public string ReturnMovie(int rentalId, DateTime returnDate)
+		public MovieRental ReturnMovie(int rentalId, DateTime returnDate)
 		{
 			if (!DateTime.TryParse(returnDate.ToString(), out DateTime date))
 			{
@@ -61,20 +61,20 @@ namespace VideoClub.Domain.Entities
 				throw new Exception("Invalid Rental Id");
 			}
 
-			var rentalToBeReturned = _rentals.Find(x => x.Id == rentalId);			
+			var rentalToBeReturned = _rentals.Find(x => x.MovieId == rentalId);			
 
 			if (rentalToBeReturned == null)
 				throw new Exception("Rental could not be found");
 
 			if (rentalToBeReturned.ReturnedDate != default)			
-				return "Movie has already been returned";
+				throw new Exception("Movie has already been returned");
 
 			rentalToBeReturned.CalculatePriceAndReturnDate(returnDate);
 
 			if(!DateTime.TryParse(rentalToBeReturned.ReturnedDate.ToString(), out DateTime dateReturned)){
-				return "Could not return Movie";
+				throw new Exception("Could not return Movie");
 			}
-			return $"You return the movie.You paid {rentalToBeReturned.Price} on the date {rentalToBeReturned.ReturnedDate}";
+			return rentalToBeReturned;
 		}
 	}
 }

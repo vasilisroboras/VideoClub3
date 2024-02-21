@@ -62,5 +62,10 @@ namespace VideoClub.Domain.Entities
 
 			Stock -= 1;
 		}
+
+		internal void ReturnMovie()
+		{
+			Stock += 1;
+		}
 	}
 }
