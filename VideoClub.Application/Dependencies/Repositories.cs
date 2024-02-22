@@ -32,4 +32,9 @@ namespace VideoClub.Application.Dependencies
 	{
 		Task<MovieRental> AddRental(MovieRental rental);
 	}
+
+	public interface IRatingRepository
+	{
+		Task<Rating> UpdateRating(Rating rating);
+	}
 }

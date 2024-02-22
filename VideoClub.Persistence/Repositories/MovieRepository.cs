@@ -48,7 +48,7 @@ namespace VideoClub.Persistence.Repositories
 
 		public async Task<Movie> GetMovieByTitleAsync(string title)
 		{
-			return await _dbContext.Movies.FirstOrDefaultAsync(m => m.Title == title);
+			return await _dbContext.Movies.Include(c => c.Ratings).FirstOrDefaultAsync(m => m.Title == title);
 		}
 
 		public async Task<Movie> UpdateMovie(Movie movie)

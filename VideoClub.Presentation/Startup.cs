@@ -58,11 +58,19 @@ namespace VideoClub.Presentation
 			services.AddScoped<IMovieRepository, MovieRepository>();
 			services.AddScoped<IRentalRepository, RentalRepository>();
 			services.AddScoped<MovieService>();
+			
 			services.AddScoped<IGenreRepository, GenreRepository>();
 			services.AddScoped<GenreService>();
 			services.AddScoped<ICustomerRepository, CustomerRepository>();
 			services.AddScoped<CustomerService>();
 			services.AddScoped<VideoClubDbContext>();
+
+			services.AddScoped<RatingService>();
+			services.AddScoped<IMovieRateService,MovieRateService>();
+			services.AddScoped<IRatingRepository,RatingRepository>();
+
+
+			
 		}
 
 

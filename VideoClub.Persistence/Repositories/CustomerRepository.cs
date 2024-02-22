@@ -33,5 +33,5 @@ namespace VideoClub.Persistence.Repositories
 		{
 			return await _dbContext.Customers.Include(c => c.Rentals).FirstOrDefaultAsync(m => m.Name == name, token);
 		}
-	}
+    }
 }

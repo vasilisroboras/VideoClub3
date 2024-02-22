@@ -16,6 +16,7 @@ namespace VideoClub.Persistence
 		public DbSet<Genre> Genres { get; set; }
 		public DbSet<MovieRental> Rentals { get; set; }
 		public DbSet<Customer> Customers { get; set; }
+		public DbSet<Rating> Ratings { get; set; }
 
 		
     protected override void OnConfiguring(DbContextOptionsBuilder options)

@@ -23,6 +23,8 @@ namespace VideoClub.Persistence.Configurations
 
 			builder.Property(x => x.Price);
 
+			builder.Property(x => x.AverageRating);
+
             // Assuming you want to map the Stock property
             builder.Property(x => x.Stock)
                 .IsRequired();

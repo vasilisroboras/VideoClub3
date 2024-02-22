@@ -10,12 +10,16 @@ namespace VideoClub.Domain.Entities
 	{
 		private readonly List<Genre> _genres;
 
+		private readonly List<Rating> _ratings;
+		public IReadOnlyCollection<Rating> Ratings => _ratings.AsReadOnly();
+
 		public int Id { get; }
 		public string Title { get; }
 		public string Description { get; }
 		public ICollection<Genre> Genres => _genres.AsReadOnly();
 		public DateTime ReleaseDate { get; }
 		public int Stock { get; private set; }
+		public double AverageRating { get; private set;  }
 
 		public int Price
         {
@@ -38,9 +42,23 @@ namespace VideoClub.Domain.Entities
 
 		public bool IsAvailable => Stock == 0;
 
+		private void CalculateAverageRating()
+		{
+			if (_ratings.Count == 0)
+			{
+				AverageRating = 0;
+			}
+			else
+			{		
+				double totalRating = _ratings.Sum(r => r.Rate);
+				AverageRating = (double)totalRating / _ratings.Count;
+			}
+		}
+
 		public Movie()
         {
             _genres = new List<Genre>();
+			_ratings = new List<Rating>();
         }
 
 		internal Movie(int id, string title, string description, Genre[] movieGenres, DateTime releaseDate, int stock)
@@ -51,6 +69,7 @@ namespace VideoClub.Domain.Entities
 			ReleaseDate = releaseDate;
 			Stock = stock;
 			Price = 0;
+			_ratings = _ratings?.ToList() ?? new List<Rating>(0);
 
 			_genres = movieGenres?.ToList() ?? new List<Genre>(0);
 		}
@@ -66,6 +85,14 @@ namespace VideoClub.Domain.Entities
 		internal void ReturnMovie()
 		{
 			Stock += 1;
+		}
+
+		public Rating AddRating(int customerId,int movieId, double rate,DateTime ratingDate )
+		{
+			var ratedMovie = new Rating(customerId, movieId, rate, ratingDate);
+			_ratings.Add(ratedMovie);
+			CalculateAverageRating();
+			return ratedMovie;
 		}
 	}
 }
