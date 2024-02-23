@@ -52,7 +52,6 @@ namespace VideoClub.Presentation
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "VideoClub.Presentation", Version = "v1" });
 			});
 
-			services.AddTransient<IMovieRentalService, MovieRentalService>();
 			services.AddTransient<ITransactionService, TransactionService>();
 
 			services.AddScoped<IMovieRepository, MovieRepository>();

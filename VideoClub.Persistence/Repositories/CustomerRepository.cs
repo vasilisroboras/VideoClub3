@@ -7,31 +7,33 @@ using VideoClub.Domain.Entities;
 
 namespace VideoClub.Persistence.Repositories
 {
-	public class CustomerRepository : ICustomerRepository
-	{
-		private readonly VideoClubDbContext _dbContext;
+    public class CustomerRepository : ICustomerRepository
+    {
+        private readonly VideoClubDbContext _dbContext;
 
-		public CustomerRepository(VideoClubDbContext dbContext)
-		{
-			_dbContext = dbContext;
-		}
+        public CustomerRepository(VideoClubDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
-		public async Task<Customer> AddCustomer(Customer customer1,CancellationToken cancellationToken = default)
-		{
-			var x = Customer.CreateCustomer(customer1.Id, customer1.Name);
-			await _dbContext.Customers.AddAsync(x);
-			await _dbContext.SaveChangesAsync();
-			return x;
-		}
+        public async Task<Customer> AddCustomer(Customer customer, CancellationToken cancellationToken = default)
+        {
+            await _dbContext.Customers.AddAsync(customer, cancellationToken);
+            await _dbContext.SaveChangesAsync(cancellationToken);
 
-		public async Task<List<Customer>> GetAllCustomersAsync()
-		{
-			return await _dbContext.Customers.ToListAsync();
-		}
+            return customer;
+        }
 
-		public async Task<Customer> GetCustomerByNameAsync(string name, CancellationToken token)
-		{
-			return await _dbContext.Customers.Include(c => c.Rentals).FirstOrDefaultAsync(m => m.Name == name, token);
-		}
+        public async Task<List<Customer>> GetAllCustomersAsync(CancellationToken cancellationToken = default)
+        {
+            return await _dbContext.Customers.ToListAsync(cancellationToken);
+        }
+
+        public async Task<Customer> GetCustomerByNameAsync(string name, CancellationToken cancellationToken = default)
+        {
+            return await _dbContext.Customers
+                .Include(c => c.Rentals)
+                .FirstOrDefaultAsync(m => m.Name == name, cancellationToken);
+        }
     }
 }
