@@ -56,7 +56,6 @@ namespace VideoClub.Application.Services
 
             var movieRental = customer.RentMovie(movie, rentalDate);
 
-            // TODO: make this transactional!
             try
             {
                 await _iTransactionService.ExecuteInTransactionAsync(async () =>
@@ -72,7 +71,6 @@ namespace VideoClub.Application.Services
                 // Log or handle the exception
                 return $"Failed to rent the movie: {ex.Message}";
             }
-
         }
 
         public async Task<string> ReturnMovie(string movieTitle, string customerName, DateTime returnRentalDate, CancellationToken token)
@@ -86,8 +84,8 @@ namespace VideoClub.Application.Services
                 return "Movie not found";
 
             var movieRental = customer.ReturnMovie(movie, returnRentalDate);
-            // TODO: make this transactional!
             try
+
             {
                 await _iTransactionService.ExecuteInTransactionAsync(async () =>
                 {
@@ -102,37 +100,6 @@ namespace VideoClub.Application.Services
                 // Log or handle the exception
                 return $"Failed to rent the movie: {ex.Message}";
             }
-
         }
-
-        // public async  Task<string> ReturnMovie(string customerName,int RentalId, DateTime ReturnDate, CancellationToken token)
-        // {
-        // 	var customer = await _customerRepository.GetCustomerByNameAsync(customerName, token);
-        // 	if (customer == null)
-        // 		return "Customer not found";
-
-        // 	var movie = await _movieRepository.GetMovieByTitleAsync(movieTitle);
-        // 	if (movie == null)
-        // 		return "Movie not found";
-
-        // 	var movieReltanResult = _movieRentalService.RentMovie(customer, movie, rentalDate);
-        // 	// TODO: make this transactional!
-        // 	 try
-        //     {
-        //         await _iTransactionService.ExecuteInTransactionAsync(async () =>
-        //         {
-        //             await _movieRepository.UpdateMovie(movieReltanResult.Movie);
-        //             await _rentalRepository.AddRental(movieReltanResult.Rental);
-        //         });
-
-        //         return "Movie rented successfully";
-        //     }
-        // 	 catch (Exception ex)
-        //     {
-        //         // Log or handle the exception
-        //         return $"Failed to rent the movie: {ex.Message}";
-        //     }
-
-        // }
     }
 }

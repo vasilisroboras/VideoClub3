@@ -23,75 +23,75 @@ using VideoClub.Application.Services.Interfaces;
 
 namespace VideoClub.Presentation
 {
-	public class Startup
-	{
-		private readonly IConfiguration _configuration;
+    public class Startup
+    {
+        private readonly IConfiguration _configuration;
 
-		public Startup(IConfiguration configuration)
-		{
-			_configuration = configuration;
-		}
+        public Startup(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
 
-		public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }
 
-		public void ConfigureServices(IServiceCollection services)
-		{
-			services.AddAutoMapper(typeof(MovieMapper));
-			services.AddAutoMapper(typeof(CustomerMapper));
-			services.AddAutoMapper(typeof(GenreMapper));
-			services.AddDbContext<VideoClubDbContext>(options =>
-			 {
-				 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("VideoClub.Persistence"));
-			 });
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddAutoMapper(typeof(MovieMapper));
+            services.AddAutoMapper(typeof(CustomerMapper));
+            services.AddAutoMapper(typeof(GenreMapper));
+            services.AddDbContext<VideoClubDbContext>(options =>
+             {
+                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("VideoClub.Persistence"));
+             });
 
-			services.AddControllers().AddNewtonsoftJson(options =>
-				options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-			);
-			services.AddSwaggerGen(c =>
-			{
-				c.SwaggerDoc("v1", new OpenApiInfo { Title = "VideoClub.Presentation", Version = "v1" });
-			});
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "VideoClub.Presentation", Version = "v1" });
+            });
 
-			services.AddTransient<ITransactionService, TransactionService>();
+            services.AddTransient<ITransactionService, TransactionService>();
 
-			services.AddScoped<IMovieRepository, MovieRepository>();
-			services.AddScoped<IRentalRepository, RentalRepository>();
-			services.AddScoped<MovieService>();
-			
-			services.AddScoped<IGenreRepository, GenreRepository>();
-			services.AddScoped<GenreService>();
-			services.AddScoped<ICustomerRepository, CustomerRepository>();
-			services.AddScoped<CustomerService>();
-			services.AddScoped<VideoClubDbContext>();
+            services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IRentalRepository, RentalRepository>();
+            services.AddScoped<MovieService>();
 
-			services.AddScoped<RatingService>();
-			services.AddScoped<IMovieRateService,MovieRateService>();
-			services.AddScoped<IRatingRepository,RatingRepository>();
+            services.AddScoped<IGenreRepository, GenreRepository>();
+            services.AddScoped<GenreService>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<CustomerService>();
+            services.AddScoped<VideoClubDbContext>();
 
-
-			
-		}
+            services.AddScoped<RatingService>();
+            services.AddScoped<IMovieRateService, MovieRateService>();
+            services.AddScoped<IRatingRepository, RatingRepository>();
 
 
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-		{
-			if (env.IsDevelopment())
-			{
-				app.UseDeveloperExceptionPage();
-				app.UseSwagger();
-				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "VideoClub.Presentation v1"));
-			}
 
-			app.UseHttpsRedirection();
+        }
 
-			app.UseRouting();
 
-			app.UseAuthorization();
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "VideoClub.Presentation v1"));
+            }
 
-			app.UseEndpoints(endpoints =>
-			{
-				endpoints.MapControllers();
-			});
-		}
-	}
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+        }
+    }
 }
