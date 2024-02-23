@@ -43,19 +43,6 @@ namespace VideoClub.Domain.Entities
 
         public bool IsAvailable => Stock == 0;
 
-        private void CalculateAverageRating()
-        {
-            if (_ratings.Count == 0)
-            {
-                AverageRating = 0;
-            }
-            else
-            {
-                double totalRating = _ratings.Sum(r => r.Rate);
-                AverageRating = (double)totalRating / _ratings.Count;
-            }
-        }
-
         public Movie()
         {
             _genres = new List<Genre>();
@@ -88,12 +75,25 @@ namespace VideoClub.Domain.Entities
             Stock += 1;
         }
 
-        public Rating AddRating(int customerId, int movieId, double rate, DateTime ratingDate)
+        internal Rating AddRating(int customerId, int movieId, double rate, DateTime ratingDate)
         {
             var ratedMovie = new Rating(customerId, movieId, rate, ratingDate);
             _ratings.Add(ratedMovie);
             CalculateAverageRating();
             return ratedMovie;
+        }
+
+        private void CalculateAverageRating()
+        {
+            if (_ratings.Count == 0)
+            {
+                AverageRating = 0;
+            }
+            else
+            {
+                double totalRating = _ratings.Sum(r => r.Rate);
+                AverageRating = (double)totalRating / _ratings.Count;
+            }
         }
     }
 }

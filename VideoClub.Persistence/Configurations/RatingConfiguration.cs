@@ -1,11 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 using VideoClub.Domain.Entities;
 
 namespace VideoClub.Persistence.Configurations
 {
-	internal class RatingConfiguration : IEntityTypeConfiguration<Rating>
+    internal class RatingConfiguration : IEntityTypeConfiguration<Rating>
 	{
 		public void Configure(EntityTypeBuilder<Rating> builder)
 		{

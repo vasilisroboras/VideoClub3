@@ -15,8 +15,6 @@ namespace VideoClub.Controllers
 		private readonly MovieService _movieService;
 		private readonly IMapper _movieMapper;
 
-
-
 		public MovieController(MovieService movieService, IMapper movieMapper)
 		{
 			_movieService = movieService;
