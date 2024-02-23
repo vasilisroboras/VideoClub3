@@ -8,7 +8,7 @@ namespace VideoClub.Application.Dependencies
 	public interface ICustomerRepository
 	{
 		Task<Customer> AddCustomer(Customer customer,CancellationToken cancellationToken);
-		Task<List<Customer>> GetAllCustomersAsync();
+		Task<List<Customer>> GetAllCustomersAsync(CancellationToken cancellationToken);
 		Task<Customer> GetCustomerByNameAsync(string name, CancellationToken token);
 	}
 

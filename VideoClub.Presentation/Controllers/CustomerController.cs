@@ -24,11 +24,11 @@ namespace VideoClub.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> GetAllCustomers()
+		public async Task<IActionResult> GetAllCustomers(CancellationToken token)
 		{
 			try
 			{
-				var customers = await _customerService.GetAllCustomersAsync();
+				var customers = await _customerService.GetAllCustomersAsync(token);
 				return Ok(customers);
 			}
 			catch (Exception ex)

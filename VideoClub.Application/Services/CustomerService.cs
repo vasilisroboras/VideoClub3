@@ -15,14 +15,14 @@ namespace VideoClub.Application.Services
             _customerRepository = customerRepository;
         }
 
-        public async Task<List<Customer>> GetAllCustomersAsync()
+        public async Task<List<Customer>> GetAllCustomersAsync(CancellationToken cancellationToken)
         {
-            return await _customerRepository.GetAllCustomersAsync();
+            return await _customerRepository.GetAllCustomersAsync(cancellationToken);
         }
 
-        public async Task<Customer> GetCustomerByNameAsync(string name, CancellationToken token)
+        public async Task<Customer> GetCustomerByNameAsync(string name, CancellationToken cancellationToken)
         {
-            return await _customerRepository.GetCustomerByNameAsync(name, token);
+            return await _customerRepository.GetCustomerByNameAsync(name, cancellationToken);
         }
 
         public async Task<Customer> AddCustomer(Customer customer, CancellationToken cancellationToken)
