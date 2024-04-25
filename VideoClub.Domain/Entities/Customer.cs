@@ -6,75 +6,76 @@ using VideoClub.Domain.Exceptions;
 
 namespace VideoClub.Domain.Entities
 {
-	public class Customer : IEntity
-	{
-		private readonly List<MovieRental> _rentals;
+    public class Customer : IEntity
+    {
+        private readonly List<MovieRental> _rentals;
 
-		public int Id { get; }
-		public string Name { get; }
-		public IReadOnlyCollection<MovieRental> Rentals => _rentals.AsReadOnly();
+        public int Id { get; }
+        public string Name { get; }
+        public IReadOnlyCollection<MovieRental> Rentals => _rentals.AsReadOnly();
 
-		public Customer()
-		{
-			_rentals = new List<MovieRental>();
-		}
+        public Customer()
+        {
+            _rentals = new List<MovieRental>();
+        }
 
-		internal Customer(int id, string name, MovieRental[] rentals = null)
-		{
-			Id = id;
-			Name = name;
-			_rentals = rentals?.ToList() ?? new List<MovieRental>(0);
-		}
+        internal Customer(int id, string name, MovieRental[] rentals = null)
+        {
+            Id = id;
+            Name = name;
+            _rentals = rentals?.ToList() ?? new List<MovieRental>(0);
+        }
 
-		public static Customer CreateCustomer(int id, string name)
-		{
-			return new Customer(id, name, Array.Empty<MovieRental>());
-		}
+        public static Customer CreateCustomer(int id, string name)
+        {
+            return new Customer(id, name, Array.Empty<MovieRental>());
+        }
 
-		public MovieRental RentMovie(int movieId, DateTime rentalDate,int price)
-		{
+        public MovieRental RentMovie(Movie movie, DateTime rentalDate)
+        {
+            if (!DateTime.TryParse(rentalDate.ToString(), out DateTime date))
+            {
+                throw new Exception("Invalid rental date");
+            }
 
-			if (!DateTime.TryParse(rentalDate.ToString(), out DateTime date))
-			{
-				throw new Exception("Invalid rental date");
-			}
-			
-			if( movieId <= 0){
-				throw new Exception("Invalid Movie Id");
-			}
-			if (_rentals.Exists(x => x.MovieId == movieId))
-				throw new InvalidRentalException($"You are already renting this movie,id {movieId}");
+            if (movie.Id <= 0)
+            {
+                throw new Exception("Invalid Movie Id");
+            }
 
-			_rentals.Add(new MovieRental(Id, movieId, rentalDate,price));
+            if (_rentals.Exists(x => x.MovieId == movie.Id))
+                throw new InvalidRentalException($"You are already renting this movie, id {movie.Id}");
 
-			return new MovieRental(Id, movieId, rentalDate,price);
-		}
+            movie.Rent();
+            _rentals.Add(new MovieRental(Id, movie.Id, rentalDate, movie.Price));
 
-		public MovieRental ReturnMovie(int rentalId, DateTime returnDate)
-		{
-			if (!DateTime.TryParse(returnDate.ToString(), out DateTime date))
-			{
-				throw new Exception("Invalid return date");
-			}
-			
-			if( rentalId <= 0){
-				throw new Exception("Invalid Rental Id");
-			}
+            return new MovieRental(Id, movie.Id, rentalDate, movie.Price);
+        }
 
-			var rentalToBeReturned = _rentals.Find(x => x.MovieId == rentalId);			
+        public MovieRental ReturnMovie(Movie movie, DateTime returnDate)
+        {
+            if (!DateTime.TryParse(returnDate.ToString(), out DateTime date))
+            {
+                throw new Exception("Invalid return date");
+            }
 
-			if (rentalToBeReturned == null)
-				throw new Exception("Rental could not be found");
+            if (movie.Id <= 0)
+            {
+                throw new Exception("Invalid Rental Id");
+            }
 
-			if (rentalToBeReturned.ReturnedDate != default)			
-				throw new Exception("Movie has already been returned");
+            var rentalToBeReturned = _rentals.Find(x => x.MovieId == movie.Id);
 
-			rentalToBeReturned.CalculatePriceAndReturnDate(returnDate);
+            if (rentalToBeReturned == null)
+                throw new Exception("Rental could not be found");
 
-			if(!DateTime.TryParse(rentalToBeReturned.ReturnedDate.ToString(), out DateTime dateReturned)){
-				throw new Exception("Could not return Movie");
-			}
-			return rentalToBeReturned;
-		}
-	}
+            if (rentalToBeReturned.ReturnedDate != default)
+                throw new Exception("Movie has already been returned");
+
+            movie.Return();
+            rentalToBeReturned.CalculatePriceAndReturnDate(returnDate);
+
+            return rentalToBeReturned;
+        }
+    }
 }

@@ -60,6 +60,7 @@ namespace VideoClub.Persistence.Repositories
 				return null;
 			}
 
+			// TODO: this needs to work
 			//existingMovie.Title = movie.Title;
 			//existingMovie.Description = movie.Description;
 			//existingMovie.MovieGenres = movie.MovieGenres;
