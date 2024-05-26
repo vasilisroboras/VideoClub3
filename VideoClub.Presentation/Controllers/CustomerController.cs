@@ -13,11 +13,11 @@ namespace VideoClub.Controllers
 	[ApiController]
 	public class CustomerController : ControllerBase
 	{
-		private readonly CustomerService _customerService;
+		private readonly ICustomerService _customerService;
 
 		private readonly IMapper _customerMapper;
 
-		public CustomerController(CustomerService customerService, IMapper customerMapper)
+		public CustomerController(ICustomerService customerService, IMapper customerMapper)
 		{
 			_customerService = customerService;			
 			_customerMapper = customerMapper;

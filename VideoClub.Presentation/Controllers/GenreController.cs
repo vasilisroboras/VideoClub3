@@ -12,11 +12,11 @@ namespace VideoClub.Controllers
     [ApiController]
     public class GenreController : ControllerBase
     {
-        private readonly GenreService _genreService;
+        private readonly IGenreService _genreService;
 
         private readonly IMapper _genreMapper;
 
-        public GenreController(GenreService GenreService, IMapper genreMapper)
+        public GenreController(IGenreService GenreService, IMapper genreMapper)
         {
             _genreService = GenreService;
             _genreMapper = genreMapper;

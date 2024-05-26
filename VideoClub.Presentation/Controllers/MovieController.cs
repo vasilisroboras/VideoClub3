@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using VideoClub.Domain.Entities;
 using System.Threading.Tasks;
 using AutoMapper;
+using VideoClub.Application.Services.Interfaces;
 
 namespace VideoClub.Controllers
 {
@@ -12,12 +13,12 @@ namespace VideoClub.Controllers
 	[ApiController]
 	public class MovieController : ControllerBase
 	{
-		private readonly MovieService _movieService;
+		private readonly IMovieService _movieService;
 		private readonly IMapper _movieMapper;
 
 
 
-		public MovieController(MovieService movieService, IMapper movieMapper)
+		public MovieController(IMovieService movieService, IMapper movieMapper)
 		{
 			_movieService = movieService;
 			_movieMapper = movieMapper;

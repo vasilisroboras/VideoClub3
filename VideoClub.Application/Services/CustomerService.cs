@@ -6,7 +6,7 @@ using VideoClub.Domain.Entities;
 
 namespace VideoClub.Application.Services
 {
-	public class CustomerService
+	public class CustomerService: ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
 

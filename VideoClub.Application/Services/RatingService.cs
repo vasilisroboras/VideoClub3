@@ -10,7 +10,7 @@ using VideoClub.Domain.Services;
 
 namespace VideoClub.Application.Services
 {
-	public class RatingService
+	public class RatingService: IRatingService
 	{
 		private readonly IMovieRepository _movieRepository;
 		public readonly IRatingRepository _ratingRepository;

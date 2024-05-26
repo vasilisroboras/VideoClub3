@@ -10,7 +10,7 @@ using VideoClub.Domain.Services;
 
 namespace VideoClub.Application.Services
 {
-	public class MovieService
+	public class MovieService: IMovieService 
 	{
 		private readonly IMovieRepository _movieRepository;
 		public readonly IRentalRepository _rentalRepository;
@@ -38,7 +38,7 @@ namespace VideoClub.Application.Services
 			return await _movieRepository.GetMovieByIdAsync(id);
 		}
 
-		public async Task<Movie> GetMovieByTiteAsync(string title)
+		public async Task<Movie> GetMovieByTitleAsync(string title)
 		{
 			return await _movieRepository.GetMovieByTitleAsync(title);
 		}
@@ -107,20 +107,21 @@ namespace VideoClub.Application.Services
             }
 
 		}
+        
 
-		// public async  Task<string> ReturnMovie(string customerName,int RentalId, DateTime ReturnDate, CancellationToken token)
-		// {
-		// 	var customer = await _customerRepository.GetCustomerByNameAsync(customerName, token);
-		// 	if (customer == null)
-		// 		return "Customer not found";
+        // public async  Task<string> ReturnMovie(string customerName,int RentalId, DateTime ReturnDate, CancellationToken token)
+        // {
+        // 	var customer = await _customerRepository.GetCustomerByNameAsync(customerName, token);
+        // 	if (customer == null)
+        // 		return "Customer not found";
 
-		// 	var movie = await _movieRepository.GetMovieByTitleAsync(movieTitle);
-		// 	if (movie == null)
-		// 		return "Movie not found";
+        // 	var movie = await _movieRepository.GetMovieByTitleAsync(movieTitle);
+        // 	if (movie == null)
+        // 		return "Movie not found";
 
-		// 	var movieReltanResult = _movieRentalService.RentMovie(customer, movie, rentalDate);
-		// 	// TODO: make this transactional!
-		// 	 try
+        // 	var movieReltanResult = _movieRentalService.RentMovie(customer, movie, rentalDate);
+        // 	// TODO: make this transactional!
+        // 	 try
         //     {
         //         await _iTransactionService.ExecuteInTransactionAsync(async () =>
         //         {
@@ -130,12 +131,12 @@ namespace VideoClub.Application.Services
 
         //         return "Movie rented successfully";
         //     }
-		// 	 catch (Exception ex)
+        // 	 catch (Exception ex)
         //     {
         //         // Log or handle the exception
         //         return $"Failed to rent the movie: {ex.Message}";
         //     }
 
-		// }
-	}
+        // }
+    }
 }

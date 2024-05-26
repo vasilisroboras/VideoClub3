@@ -5,7 +5,7 @@ using VideoClub.Domain.Entities;
 
 namespace VideoClub.Application.Services
 {
-	public class GenreService
+	public class GenreService: IGenreService
     {
         private readonly IGenreRepository _GenreRepository;
 

@@ -3,6 +3,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using VideoClub.Application.Services;
+using VideoClub.Application.Services.Interfaces;
 
 namespace VideoClub.Controllers
 {
@@ -10,9 +11,9 @@ namespace VideoClub.Controllers
 	[ApiController]
 	public class ReturnRentalController : ControllerBase
 	{
-		private readonly MovieService _movieService;
+		private readonly IMovieService _movieService;
 
-		public ReturnRentalController(MovieService movieService)
+		public ReturnRentalController(IMovieService movieService)
 		{
 			_movieService = movieService;
 		}

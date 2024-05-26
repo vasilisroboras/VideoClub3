@@ -3,6 +3,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using VideoClub.Application.Services;
+using VideoClub.Application.Services.Interfaces;
 using VideoClub.Domain.Entities;
 
 namespace VideoClub.Controllers
@@ -11,9 +12,9 @@ namespace VideoClub.Controllers
 	[ApiController]
 	public class RatingController : ControllerBase
 	{
-		private readonly RatingService _ratingService;
+		private readonly IRatingService _ratingService;
 
-		public RatingController(RatingService ratingService)
+		public RatingController(IRatingService ratingService)
 		{
 			_ratingService = ratingService;
 		}
